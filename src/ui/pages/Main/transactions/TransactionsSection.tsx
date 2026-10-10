@@ -16,7 +16,8 @@ export default function TransactionsSection() {
       const response = await getTransactionsApi()
 
       if (response !== null) {
-        setTransactions(response)
+        // 只取最新 10 条，避免 DOM 过大
+        setTransactions(response.slice(0, 10))
       }
     }
 

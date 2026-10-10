@@ -27,7 +27,8 @@ export function TransactionItem(props: Props) {
     }
 
     fetchAll()
-  })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.transaction.id])
 
   return (
     <Container>

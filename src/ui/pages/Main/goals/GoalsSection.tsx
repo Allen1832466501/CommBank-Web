@@ -21,7 +21,9 @@ export default function GoalsSection() {
   useEffect(() => {
     async function fetch() {
       const goals = await getGoals()
-      goals?.forEach((goal) => dispatch(createGoalRedux(goal)))
+      // 官方测试库里堆了近 3000 个目标，这里只取最新的 6 个，防止把浏览器刷死
+      const recentGoals = goals ? goals.slice(-6) : []
+      recentGoals.forEach((goal) => dispatch(createGoalRedux(goal)))
     }
     fetch()
   }, [dispatch])
